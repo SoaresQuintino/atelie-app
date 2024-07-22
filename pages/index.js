@@ -1,30 +1,43 @@
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
 import Topbar from '../components/Topbar';
 import GridItem from '../components/GridItem';
 
-export default function HomePage() {
+export default function HomePage({produtos}) {
+
+
   return (<div className="container mx-auto px-4 py-8">
-      <Head>
+   <Head>
         <title>Ateliê Bela Arte</title>
         <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" />
-      </Head>
-
-      <Topbar/>
-      
-        
-      <hr className="my-8 border-gray-300" />
-
+   </Head>
      
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+   <Topbar/>
       
-        <GridItem id="1" src="https://images-offstore.map.azionedge.net/compressed/e8f02ab50a48a7f0d747bbdeda22cb88.webp" alt="imagem" title="Bolsa Transversal" description=""></GridItem>
-        <GridItem id="2" src="https://images-offstore.map.azionedge.net/compressed/715205db67e53ce524c282cd348c6d99.webp" alt="imagem" title="Carteira Infantil" description="Descrição"></GridItem>
-        <GridItem id="3" src="https://images-offstore.map.azionedge.net/compressed/ceab2038e5338d6ac714514dc46734fd.webp" alt="imagem" title="Bolsa Lousa" description="Descrição"></GridItem>
-        
-        
-         </section>
-     </div>)
+   <hr className="my-8 border-gray-300" />
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+     
+     {produtos.map((produto) => (
+      
+        // eslint-disable-next-line react/jsx-key
+        <GridItem id={produto.id} src={produto.urlimagem} alt="imagem" title={produto.nome} description={produto.descricao}></GridItem>
+     ))}
+
+      </section>
+     
+   </div>)
 }
+
+export async function getServerSideProps() {
+   const res = await fetch('http://localhost:8000/api/produtos');
+   const data = await res.json();
+  
+   const produtos = data['hydra:member'] ;
+ 
+ 
+   return {
+     props: {
+       produtos,
+     },
+   };
+ }
