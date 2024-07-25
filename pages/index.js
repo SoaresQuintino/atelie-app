@@ -2,9 +2,8 @@
 import React from "react";
 import Head from "next/head";
 import Topbar from "../components/Topbar";
-import GridItem from "../components/GridItem";
 import Cover from "../components/Cover";
-import CollectionCard from "../components/CollectionCard";
+import CollectionsSection from "../components/CollectionsSection";
 
 export default function HomePage({ produtos }) {
   return (
@@ -20,22 +19,9 @@ export default function HomePage({ produtos }) {
 
       <Topbar />
       <Cover />
-      <CollectionCard />
+      <CollectionsSection produtos={produtos} />
 
       <hr className="my-8 border-transparent" />
-
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md-margin-lr-5 lg-margin-lr-20">
-        {produtos.map((produto) => (
-          // eslint-disable-next-line react/jsx-key
-          <GridItem
-            id={produto.id}
-            src={produto.urlimagem}
-            alt="imagem"
-            title={produto.nome}
-            description={produto.descricao}
-          ></GridItem>
-        ))}
-      </section>
     </div>
   );
 }

@@ -35,9 +35,9 @@ export default function Topbar() {
   };
 
   return (
-    <nav className="bg-pink-200 py-4 shadow-md w-full">
+    <nav className="bg-pink-200 py-8 shadow-md w-full">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-9">
           <Image
             src="https://images-offstore.map.azionedge.net/compressed/db2cc68e7b598da394e4fc58bbd5676b.webp"
             alt="Logo"
@@ -46,12 +46,12 @@ export default function Topbar() {
             className="w-12 h-12"
           />
         </div>
-        <div className="relative mx-4 max-w-md">
+        <div className="relative mx-4">
           <input
             type="text"
             placeholder="O que você procura?"
-            className="w-full py-2 px-4 rounded-full border border-gray-300 focus:outline-none focus:border-pink-500"
-          />
+            className="w-full py-2 pl-4 pr-36 text-center rounded-full border border-gray-300 focus:outline-none focus:border-pink-500"
+          ></input>
           <button className="absolute right-0 top-0 h-full px-4 bg-pink-500 text-white rounded-r-full">
             <svg
               className="w-5 h-5"
